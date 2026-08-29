@@ -1,21 +1,65 @@
-{
-    font-family: sans-serif;
-}
-main{
-    display: flex;
-    flex direction: column;
-    align-items: center;
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do List</title>
+    <style>
+        /* Changes background from white to light blue */
+        body { 
+            background-color: lightblue; 
+            font-family: sans-serif; 
+        }
+        
+        /* HUGE HEADING */
+        h1 { 
+            font-size: 50px; 
+        }
+        
+        /* Bigger text for the list items */
+        li { 
+            font-size: 24px; 
+            margin-bottom: 10px; 
+        }
+        
+        /* Simple strike-through style */
+        .done { 
+            text-decoration: line-through; 
+            opacity: 0.5; 
+        }
+    </style>
+</head>
+<body>
 
-body{
-    background-color:rgb(210, 75, 233);
-    color:rgb(149, 108, 187)
-}
-h1{
-    margin: 0;
-    margin-top: 60;
-}
+    <h1>My To Do List</h1>
 
-.highlight{
-    background-color: black;
-}
+    <!-- Input and Button -->
+    <input type="text" id="myInput" placeholder="Type task here..." style="font-size: 20px;">
+    <button onclick="addTask()" style="font-size: 20px;">Add</button>
+
+    <!-- The List -->
+    <ul id="myList">
+        <li>
+            <span onclick="this.classList.toggle('done')">Hit gym</span> 
+            <button onclick="this.parentElement.remove()">X</button>
+        </li>
+    </ul>
+
+    <script>
+        function addTask() {
+            var text = document.getElementById("myInput").value;
+            if (text === "") return; // Stop if empty
+
+            var li = document.createElement("li");
+            
+            // This sets up the text click and the delete button click all in one line
+            li.innerHTML = `<span onclick="this.classList.toggle('done')">${text}</span> <button onclick="this.parentElement.remove()">X</button>`;
+            
+            document.getElementById("myList").appendChild(li);
+            document.getElementById("myInput").value = ""; // Clear input
+        }
+    </script>
+
+</body>
+</html>
+
+
+

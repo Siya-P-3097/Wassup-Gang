@@ -1,24 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunny Day Mall</title>
+    <img src="banner.png"width="1500"height="550" >
+    <title>To Do List</title>
+
+
+    
+    <style>
+        /* Changes background from white to light blue */
+        body { 
+            background-color: lightblue; 
+            font-family: sans-serif; 
+        }
+        
+        /* HUGE HEADING */
+        h1 { 
+            font-size: 50px; 
+        }
+        
+        /* Bigger text for the list items */
+        li { 
+            font-size: 24px; 
+            margin-bottom: 10px; 
+        }
+        
+        /* Simple strike-through style */
+        .done { 
+            text-decoration: line-through; 
+            opacity: 0.5; 
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Sunny Day Mall</h1>
-    </header>
-    <p> class="highlight bold">Small text</p>
-    <ol>
-        <li id="idk">List item</li>
-    </ol>
-    <ul>
-        <li>List item 1</li>
-        <li>List item 2</li>
+   
+    <h1>To Do List</h1>
+    <h2>will help you have a perfect, organized day!:)</h2>
+
+    <!-- Input and Button -->
+    <input type="text" id="myInput" placeholder="task..." style="font-size: 20px;">
+    <button onclick="addTask()" style="font-size: 20px;">Add</button>
+
+    <!-- The List -->
+    <ul id="myList">
+        <li>
+            <span onclick="this.classList.toggle('done')">join sunbeam:)</span> 
+            <button onclick="this.parentElement.remove()">X</button>
+        </li>
     </ul>
-    <button onclick="clickHEllo()">click here</button>
-    <img src="https://www.clipartmax.com/png/middle/15-150515_unchecked-checkbox.png" width="20" height=""20/>
+
+    <script>
+        function addTask() {
+            var text = document.getElementById("myInput").value;
+            if (text === "") return; // Stop if empty
+
+            var li = document.createElement("li");
+            
+            // This sets up the text click and the delete button click all in one line
+            li.innerHTML = `<span onclick="this.classList.toggle('done')">${text}</span> <button onclick="this.parentElement.remove()">X</button>`;
+            
+            document.getElementById("myList").appendChild(li);
+            document.getElementById("myInput").value = ""; // Clear input
+            document.getElementById("myInput").focus(); // Focus on the input field
+        }
+        
+    </script>
+
 </body>
-<script
 </html>
